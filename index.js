@@ -19,14 +19,12 @@ console.log(`Finding images in: ${mainPath}`);
 
 let files = fs.readdirSync(mainPath, { withFileTypes: true })
     .filter(dirent => dirent.isFile())
-    .map(file => file.name);
+    .map(file => path.parse(file.name));
 
 console.log(`Found ${files.length} images.`);
 
 // TODO: make everything async
 files.forEach(file => {
-    file = path.parse(file);
-
     if (file.name.startsWith('IMG_')) {
         // If the rest of the filename are numbers only
         // Some non-iPhone images start with "IMG_", but end with a datetime
