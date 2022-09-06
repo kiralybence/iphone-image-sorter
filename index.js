@@ -25,28 +25,23 @@ console.log(`Found ${files.length} images.`);
 
 // TODO: make everything async
 files.forEach(file => {
-    if (file.name.startsWith('IMG_')) {
-        // If the rest of the filename are numbers only
-        // Some non-iPhone images start with "IMG_", but end with a datetime
-        if (/^[0-9]+$/.test(file.name.substring(4))) {
-            switch (file.ext) {
-                case '.PNG':
-                    move(file, 'Screenshots');
-                    break;
+    // Check if the filename follows iPhone naming convention
+    if (/^IMG_[0-9]+$/.test(file.name)) {
+        switch (file.ext) {
+            case '.PNG':
+                move(file, 'Screenshots');
+                break;
 
-                case '.JPG':
-                case '.HEIC':
-                case '.MOV':
-                case '.MP4':
-                    move(file, 'DCIM');
-                    break;
+            case '.JPG':
+            case '.HEIC':
+            case '.MOV':
+            case '.MP4':
+                move(file, 'DCIM');
+                break;
 
-                default:
-                    move(file, 'Downloads');
-                    break;
-            }
-        } else {
-            move(file, 'Downloads');
+            default:
+                move(file, 'Downloads');
+                break;
         }
     } else {
         move(file, 'Downloads');
