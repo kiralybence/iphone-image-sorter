@@ -8,20 +8,20 @@ It will move your photos to subdirectories (DCIM, Screenshots, Downloads) based 
 
 You must specify the path where the images are located at.
 
-```bash
+```sh
 node index.js <path>
 ```
 
 The path must be an absolute path.
 
-```bash
+```sh
 # This will NOT work
 node index.js ./images
 ```
 
 On Windows, you cannot use single backslashes in the path.
 
-```bash
+```sh
 # This will NOT work
 node index.js D:\Backup\Images
 
