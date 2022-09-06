@@ -62,10 +62,10 @@ files.forEach(file => {
  * @param {string} targetDir The target subdirectory
  */
 function move(file, targetDir) {
-    let absPath = path.join(mainPath, targetDir);
+    let targetDirPath = path.join(mainPath, targetDir);
     
-    if (!fs.existsSync(absPath)) {
-        fs.mkdirSync(absPath);
+    if (!fs.existsSync(targetDirPath)) {
+        fs.mkdirSync(targetDirPath);
     }
 
     console.log(`Moving: ${file.base} -> ${targetDir}`);
