@@ -30,4 +30,7 @@ node index.js D:\\Backup\\Images
 
 # or single forward slashes
 node index.js D:/Backup/Images
+
+# or wrap it in quotes
+node index.js "D:\Backup\Images"
 ```
