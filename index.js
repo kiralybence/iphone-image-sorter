@@ -23,7 +23,6 @@ let files = fs.readdirSync(mainPath, { withFileTypes: true })
 
 console.log(`Found ${files.length} images.`);
 
-// TODO: make everything async
 files.forEach(file => {
     // Check if the filename follows iPhone naming convention
     if (/^IMG_[0-9]+$/.test(file.name)) {
@@ -54,7 +53,7 @@ files.forEach(file => {
  * @param {path.ParsedPath} file The file object
  * @param {string} targetDir The target subdirectory
  */
-function move(file, targetDir) {
+async function move(file, targetDir) {
     let targetDirPath = path.join(mainPath, targetDir);
     
     if (!fs.existsSync(targetDirPath)) {
@@ -63,8 +62,9 @@ function move(file, targetDir) {
 
     console.log(`Moving: ${file.base} -> ${targetDir}`);
 
-    fs.renameSync(
+    fs.rename(
         path.join(mainPath, file.base),
-        path.join(mainPath, targetDir, file.base)
+        path.join(mainPath, targetDir, file.base),
+        err => { if (err) throw err; }
     );
 }
